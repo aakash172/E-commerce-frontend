@@ -1,8 +1,7 @@
-import Header from "./pages/Header";
 
 function Home() {
     return <>
-        <Header />
+        Home
     </>
 }
 export default Home;
