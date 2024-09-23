@@ -3,7 +3,7 @@ import loginIcon from "./../assest/signin.gif";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import imageTobase64 from "../helpers/imageTobase64";
-import SummaryApi from "../common";
+import SummaryApi from "../common/index.js";
 import { toast } from "react-toastify";
 
 function SignUp() {
@@ -38,24 +38,34 @@ function SignUp() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (data.confirmPassword === data.password) {
+
+    // Check if password and confirmPassword match
+    if (data.confirmPassword !== data.password) {
+      console.log("Password and ConfirmPassWord do not match");
+      toast.error("Passwords do not match");
+      return;
+    }
+    try {
+      // Make the API request
       const dataResponse = await fetch(SummaryApi.SignUP.url, {
         method: SummaryApi.SignUP.method,
         headers: {
-          "content-type": "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data), // Send user data
       });
-      const dataapi = await dataResponse.json();
-      console.log(dataapi);
+
+      const dataapi = await dataResponse.json(); // Parse response
+
       if (dataapi.success) {
         toast.success(dataapi.message);
-        navigate("/");
+        navigate("/"); // Navigate to home page on success
       } else {
-        toast.error(dataapi.message);
+        toast.error(dataapi.message); // Display error from API
       }
-    } else {
-      console.log("Password and ConfirmPassWord Doesnot match");
+    } catch (error) {
+      console.error("Error:"); // Log error
+      toast.error(error.message);
     }
   };
 

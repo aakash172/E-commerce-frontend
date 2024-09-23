@@ -1,9 +1,12 @@
 import { useState } from "react";
 import loginIcon from "./../assest/signin.gif";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import SummaryApi from "../common/index.js";
+import { toast } from "react-toastify";
 
 function Login() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [data, setdata] = useState({
     email: "",
@@ -18,8 +21,22 @@ function Login() {
       };
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const dataResponse = await fetch(SummaryApi.SignIn.url, {
+      method: SummaryApi.SignIn.method,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const dataApi = await dataResponse.json();
+    if (dataApi.success) {
+      toast.success(data.message);
+      navigate("/");
+    } else {
+      toast.error(data.message);
+    }
   };
 
   return (
