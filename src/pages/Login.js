@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import loginIcon from "./../assest/signin.gif";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import SummaryApi from "../common/index.js";
 import { toast } from "react-toastify";
+import Context from "../context/index.js";
 
 function Login() {
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ function Login() {
       };
     });
   };
+  const { fetchUserDetails } = useContext(Context);
+  console.log("generalContext : ", fetchUserDetails());
   const handleSubmit = async (e) => {
     e.preventDefault();
     const dataResponse = await fetch(SummaryApi.SignIn.url, {
