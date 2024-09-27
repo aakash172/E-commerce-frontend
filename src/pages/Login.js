@@ -24,6 +24,7 @@ function Login() {
   };
   const { fetchUserDetails } = useContext(Context);
   console.log("generalContext : ", fetchUserDetails());
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const dataResponse = await fetch(SummaryApi.SignIn.url, {
@@ -31,14 +32,16 @@ function Login() {
       headers: {
         "content-type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(data),
     });
     const dataApi = await dataResponse.json();
     if (dataApi.success) {
-      toast.success(data.message);
+      toast.success(dataApi.message);
       navigate("/");
+      fetchUserDetails();
     } else {
-      toast.error(data.message);
+      toast.error(dataApi.message);
     }
   };
 
@@ -64,7 +67,7 @@ function Login() {
               </div>
             </div>
             <div>
-              <label>PassWord :</label>
+              <label>Password :</label>
               <div className="bg-slate-100 p-2 flex">
                 <input
                   type={showPassword ? "text" : "password"}
