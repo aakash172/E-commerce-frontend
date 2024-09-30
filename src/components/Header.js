@@ -67,7 +67,7 @@ function Header() {
                 <nav>
                   <Link
                     to={"admin-panel"}
-                    className="whitespace-nowrap hover:bg-slate-100 p-2  "
+                    className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2  "
                     onClick={() => setMenuDisplay((prev) => !prev)}
                   >
                     Admin Panel
