@@ -12,7 +12,6 @@ function Header() {
   const [menuDisplay, setMenuDisplay] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.user);
-  console.log(user);
   const handleLogout = async () => {
     const fetchData = await fetch(SummaryApi.logout_user.url, {
       method: SummaryApi.logout_user.method,

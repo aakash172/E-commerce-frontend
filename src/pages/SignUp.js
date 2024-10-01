@@ -41,7 +41,6 @@ function SignUp() {
 
     // Check if password and confirmPassword match
     if (data.confirmPassword !== data.password) {
-      console.log("Password and ConfirmPassWord do not match");
       toast.error("Passwords do not match");
       return;
     }
@@ -64,7 +63,6 @@ function SignUp() {
         toast.error(dataapi.message); // Display error from API
       }
     } catch (error) {
-      console.error("Error:"); // Log error
       toast.error(error.message);
     }
   };
