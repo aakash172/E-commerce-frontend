@@ -7,6 +7,13 @@ import ChangeUserRole from "../components/ChangeUserRole";
 
 export default function AllUsers() {
   const [allUser, setAllUsers] = useState([]);
+  const [openUpdateUser, setOpenUpdateUser] = useState(false);
+  const [updateUserDetails, setupdateUserDetails] = useState({
+    email: "",
+    name: "",
+    role: "",
+    _id: "",
+  });
   const fetchAllUsers = async () => {
     const fetchData = await fetch(SummaryApi.allUser.url, {
       method: SummaryApi.allUser.method,
@@ -27,7 +34,7 @@ export default function AllUsers() {
     <div className="bg-white pb-4">
       <table className="w-full userTable">
         <thead>
-          <tr>
+          <tr className="bg-black text-white">
             <th>Sr No.</th>
             <th>Name</th>
             <th>Email</th>
@@ -47,7 +54,13 @@ export default function AllUsers() {
                   <td>{el?.role}</td>
                   <td>{moment(el?.createdAt).format("ll")}</td>
                   <td>
-                    <button className="bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-300 hover:text-white">
+                    <button
+                      className="bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-300 hover:text-white"
+                      onClick={() => {
+                        setOpenUpdateUser((prev) => !prev);
+                        setupdateUserDetails(el);
+                      }}
+                    >
                       <MdModeEdit />
                     </button>
                   </td>
@@ -56,7 +69,16 @@ export default function AllUsers() {
             })}
         </tbody>
       </table>
-      <ChangeUserRole />
+      {openUpdateUser && (
+        <ChangeUserRole
+          onClose={() => setOpenUpdateUser(false)}
+          name={updateUserDetails.name}
+          email={updateUserDetails.email}
+          role={updateUserDetails.role}
+          userId={updateUserDetails._id}
+          updateAllUser={() => fetchAllUsers()}
+        />
+      )}
     </div>
   );
 }

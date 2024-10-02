@@ -23,7 +23,7 @@ function Login() {
     });
   };
   const { fetchUserDetails } = useContext(Context);
-  console.log("generalContext : ", fetchUserDetails());
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

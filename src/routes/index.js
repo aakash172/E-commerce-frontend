@@ -33,13 +33,13 @@ const router = createBrowserRouter([
         path: "admin-panel",
         element: <AdminPanel />,
         children: [
-          { 
-            path: "all-products", 
-            element: <AllProducts /> 
+          {
+            path: "all-products",
+            element: <AllProducts />,
           },
-          { 
-            path: "all-users", 
-            element: <AllUsers /> 
+          {
+            path: "all-users",
+            element: <AllUsers />,
           },
         ],
       },
