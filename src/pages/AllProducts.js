@@ -1,8 +1,19 @@
+import SummaryApi from "../common";
+import AdminProductCart from "../components/AdminProductCart";
 import UploadProduct from "../components/UploadProducts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AllProducts() {
   const [openUploadProduct, setOpenUploadProduct] = useState(false);
+  const [allProduct, setallProduct] = useState([]);
+  const fetchAllProduct = async () => {
+    const fetchResponse = await fetch(SummaryApi.allProduct.url);
+    const dataResponse = await fetchResponse.json();
+    setallProduct(dataResponse?.data || []);
+  };
+  useEffect(() => {
+    fetchAllProduct();
+  }, []);
 
   return (
     <div>
@@ -14,6 +25,17 @@ export default function AllProducts() {
         >
           Upload Product
         </button>
+      </div>
+
+      <div className="flex items-center gap-5 py-4">
+        {allProduct.map((product, index) => {
+          return (
+            <AdminProductCart
+              data={product}
+              key={`${index}+${product.productName}`}
+            />
+          );
+        })}
       </div>
 
       {/* Upload Product */}
