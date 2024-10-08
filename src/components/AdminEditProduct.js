@@ -8,8 +8,9 @@ import { MdDelete } from "react-icons/md";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
 
-const AdminEditProduct = ({ onClose, productData }) => {
+const AdminEditProduct = ({ onClose, productData, fetchAllProduct }) => {
   const [data, setData] = useState({
+    ...productData,
     productName: productData?.productName,
     brandName: productData?.brandName,
     category: productData?.category,
@@ -58,6 +59,7 @@ const AdminEditProduct = ({ onClose, productData }) => {
     const responseData = await fetchResponse.json();
     if (responseData.success) {
       toast.success(responseData?.message);
+      fetchAllProduct();
       onClose();
     } else {
       toast.error(responseData?.message);

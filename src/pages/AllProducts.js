@@ -26,13 +26,14 @@ export default function AllProducts() {
           Upload Product
         </button>
       </div>
-
-      <div className="flex items-center gap-5 py-4">
+      {/* All Product */}
+      <div className="flex items-center flex-wrap gap-5 py-4 h-[calc[100vh-190px)] overflow-y-scroll">
         {allProduct.map((product, index) => {
           return (
             <AdminProductCart
               data={product}
               key={`${index}+${product.productName}`}
+              fetchAllProduct={fetchAllProduct}
             />
           );
         })}
@@ -40,7 +41,10 @@ export default function AllProducts() {
 
       {/* Upload Product */}
       {openUploadProduct && (
-        <UploadProduct onClose={() => setOpenUploadProduct(false)} />
+        <UploadProduct
+          onClose={() => setOpenUploadProduct(false)}
+          fetchAllProduct={fetchAllProduct}
+        />
       )}
     </div>
   );
