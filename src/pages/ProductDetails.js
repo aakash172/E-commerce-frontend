@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import SummaryApi from "../common";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import DisplayCurrencyINR from "../helpers/displayCurrency";
-
+import CategoryWiseProductDisplay from "../components/CategoryWiseProductDisplay";
 const ProductDetails = () => {
   const [data, setData] = useState({
     productName: "",
@@ -72,7 +72,7 @@ const ProductDetails = () => {
       <div className="min-h-[200px] flex flex-col lg:flex-row gap-4">
         {/* Product Image */}
         <div className="h-96 flex flex-col lg:flex-row-reverse gap-4">
-          <div className="h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative">
+          <div className="h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative p-2">
             <img
               src={activeImage}
               className="h-full w-full object-scale-down mix-blend-multiply"
@@ -187,6 +187,12 @@ const ProductDetails = () => {
           </div>
         )}
       </div>
+      {data.category && (
+        <CategoryWiseProductDisplay
+          category={data?.category}
+          heading={"Recommended Product"}
+        />
+      )}
     </div>
   );
 };

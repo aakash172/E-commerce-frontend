@@ -70,7 +70,7 @@ const HorizontalCardProduct = ({ category, heading }) => {
           : data.map((product, index) => {
               return (
                 <Link
-                  to={"product/" + product?._id}
+                  to={"/product/" + product?._id}
                   key={product?.productName + index}
                   className="w-full max-w-[280px] md:min-w-[320px]  min-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex"
                 >
