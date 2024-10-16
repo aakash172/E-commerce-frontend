@@ -1,15 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import fetchCategoryWiseProduct from "../helpers/fetchCategoryWiseProduct";
 import DisplayCurrencyINR from "../helpers/displayCurrency";
 import addToCart from "../helpers/addToCart";
+import Context from "../context";
 
 const CategoryWiseProductDisplay = ({ category, heading }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const loadingList = new Array(13).fill(null);
-  const [scroll, setScroll] = useState(0);
-  const scrollElement = useRef();
+  const { fetchUserAddToCart } = useContext(Context);
+
+  const handleAddToCart = async (e, id) => {
+    await addToCart(e, id);
+    fetchUserAddToCart();
+  };
 
   const fetchData = async () => {
     setLoading(true);
@@ -73,7 +78,7 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
                     </div>
                     <button
                       className="text-sm bg-red-600 hover:bg-red-700 text-white px-white px-3 py-1 rounded-full"
-                      onClick={(e) => addToCart(e, product?._id)}
+                      onClick={(e) => handleAddToCart(e, product?._id)}
                     >
                       Add TO cart
                     </button>

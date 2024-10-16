@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
 import { setUserDetails } from "../store/usersSlice";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ROLE from "../common/role";
+import Context from "../context";
 function Header() {
   const [menuDisplay, setMenuDisplay] = useState(false);
   const dispatch = useDispatch();
+  const context = useContext(Context);
   const user = useSelector((state) => state?.user?.user);
   const handleLogout = async () => {
     const fetchData = await fetch(SummaryApi.logout_user.url, {
@@ -80,15 +82,17 @@ function Header() {
               </div>
             )}
           </div>
+          {user?._id && (
+            <div className="text-2xl relative">
+              <span>
+                <FaShoppingCart />
+              </span>
 
-          <div className="text-2xl relative">
-            <span>
-              <FaShoppingCart />
-            </span>
-            <div className="bg-red-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-2 -right-3 ">
-              <p className="text-sm">0</p>
+              <div className="bg-red-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-2 -right-3 ">
+                <p className="text-sm">{context?.cartProductCount}</p>
+              </div>
             </div>
-          </div>
+          )}
           <div className="">
             {user ? (
               <button
