@@ -16,7 +16,9 @@ function Header() {
   const context = useContext(Context);
   const navigate = useNavigate();
   const searchInput = useLocation();
-  const [search, setSearch] = useState(searchInput?.search?.split("=")[1]);
+  const URLSearch = new URLSearchParams(searchInput?.search);
+  const searchQuery = URLSearch.getAll("q");
+  const [search, setSearch] = useState(searchQuery);
   const user = useSelector((state) => state?.user?.user);
   const handleLogout = async () => {
     const fetchData = await fetch(SummaryApi.logout_user.url, {
@@ -27,6 +29,7 @@ function Header() {
     if (data.success) {
       toast.success("User Logout Successfully");
       dispatch(setUserDetails(null));
+      navigate("/");
     } else {
       toast.error(data.message);
     }

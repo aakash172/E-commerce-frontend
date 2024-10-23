@@ -11,7 +11,6 @@ const Cart = () => {
   const loadingCart = new Array(context.cartProductCount).fill(null);
 
   const fetchData = async () => {
-    setLoading(true);
     const response = await fetch(SummaryApi.addToCartProductView.url, {
       method: SummaryApi.addToCartProductView.method,
       credentials: "include",
@@ -20,15 +19,18 @@ const Cart = () => {
       },
     });
 
-    setLoading(false);
     const responseData = await response.json();
     if (responseData.success) {
       setData(responseData?.data);
     }
   };
-
+  const handleLoading = async () => {
+    await fetchData();
+  };
   useEffect(() => {
-    fetchData();
+    setLoading(true);
+    handleLoading();
+    setLoading(false);
   }, []);
 
   const increaseQty = async (id, qty) => {
