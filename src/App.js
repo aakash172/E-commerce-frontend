@@ -18,7 +18,7 @@ function App() {
       method: SummaryApi.current_user.method,
       credentials: "include",
     });
-    console.log("aks", dataResponse);
+    console.log("aks", SummaryApi.current_user.url);
     const dataApi = await dataResponse?.json();
     if (dataApi?.success) {
       dispatch(setUserDetails(dataApi?.data));
