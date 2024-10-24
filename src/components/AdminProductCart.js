@@ -15,10 +15,10 @@ const AdminProductCart = ({ data, fetchAllProduct }) => {
             className="mx-auto object-fill h-full"
           ></img>
         </div>
-        <h1 className="text-ellipsis line-clamp-2">{data.productName}</h1>
+        <h1 className="text-ellipsis line-clamp-2">{data?.productName}</h1>
         <div>
           <p className="font-semibold">
-            {DisplayCurrencyINR(data.sellingPrice)}
+            {DisplayCurrencyINR(data?.sellingPrice)}
           </p>
 
           <div

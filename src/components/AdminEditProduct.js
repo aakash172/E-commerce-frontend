@@ -56,8 +56,9 @@ const AdminEditProduct = ({ onClose, productData, fetchAllProduct }) => {
       credentials: "include",
       headers: { "content-type": "application/json" },
     });
-    const responseData = await fetchResponse.json();
-    if (responseData.success) {
+    const responseData = await fetchResponse?.json();
+    
+    if (responseData?.success) {
       toast.success(responseData?.message);
       fetchAllProduct();
       onClose();

@@ -54,13 +54,13 @@ function SignUp() {
         body: JSON.stringify(data), // Send user data
       });
 
-      const dataapi = await dataResponse.json(); // Parse response
+      const dataapi = await dataResponse?.json(); // Parse response
 
-      if (dataapi.success) {
-        toast.success(dataapi.message);
+      if (dataapi?.success) {
+        toast.success(dataapi?.message);
         navigate("/"); // Navigate to home page on success
       } else {
-        toast.error(dataapi.message); // Display error from API
+        toast.error(dataapi?.message); // Display error from API
       }
     } catch (error) {
       toast.error(error.message);
@@ -73,7 +73,7 @@ function SignUp() {
         <div className="bg-white p-5 w-full max-w-sm mx-auto rounded-xl">
           <div className="w-20 h-20 mx-auto relative overflow-hidden rounded-full">
             <div>
-              <img src={data.profilePic || loginIcon} alt="Login icon"></img>
+              <img src={data?.profilePic || loginIcon} alt="Login icon"></img>
             </div>
             <form>
               <label>
@@ -97,7 +97,7 @@ function SignUp() {
                   placeholder="Enter Your Name"
                   required
                   name="name"
-                  value={data.name}
+                  value={data?.name}
                   onChange={handleChange}
                   className="w-full h-full outline-none bg-transparent"
                 />
@@ -111,7 +111,7 @@ function SignUp() {
                   placeholder="Enter Email"
                   required
                   name="email"
-                  value={data.email}
+                  value={data?.email}
                   onChange={handleChange}
                   className="w-full h-full outline-none bg-transparent"
                 />
@@ -125,7 +125,7 @@ function SignUp() {
                   placeholder="Enter Password"
                   required
                   name="password"
-                  value={data.password}
+                  value={data?.password}
                   onChange={handleChange}
                   className="w-full h-full outline-none bg-transparent"
                 />
@@ -145,7 +145,7 @@ function SignUp() {
                   placeholder="Enter Password"
                   required
                   name="confirmPassword"
-                  value={data.confirmPassword}
+                  value={data?.confirmPassword}
                   onChange={handleChange}
                   className="w-full h-full outline-none bg-transparent"
                 />

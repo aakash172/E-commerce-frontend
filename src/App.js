@@ -18,9 +18,10 @@ function App() {
       method: SummaryApi.current_user.method,
       credentials: "include",
     });
-    const dataApi = await dataResponse.json();
-    if (dataApi.success) {
-      dispatch(setUserDetails(dataApi.data));
+    console.log("aks", dataResponse);
+    const dataApi = await dataResponse?.json();
+    if (dataApi?.success) {
+      dispatch(setUserDetails(dataApi?.data));
     }
   };
   const fetchUserAddToCart = async () => {
@@ -28,7 +29,7 @@ function App() {
       method: SummaryApi.addToCartProductCount.method,
       credentials: "include",
     });
-    const dataApi = await dataResponse.json();
+    const dataApi = await dataResponse?.json();
     setCartProductCount(dataApi?.data?.count);
   };
   useEffect(() => {

@@ -1,4 +1,4 @@
-const backendDomain = "http://localhost:8080";
+const backendDomain = "https://shopit-aakash-172.vercel.app/";
 
 const SummaryApi = {
   SignUP: {
