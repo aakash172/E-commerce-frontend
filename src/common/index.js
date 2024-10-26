@@ -75,6 +75,10 @@ const SummaryApi = {
     url: `${process.env.REACT_APP_BACKEND_URL}/api/filter-product`,
     method: "post",
   },
+  payment: {
+    url: `${process.env.REACT_APP_BACKEND_URL}/api/checkout`,
+    method: "post",
+  },
 };
 
 export default SummaryApi;

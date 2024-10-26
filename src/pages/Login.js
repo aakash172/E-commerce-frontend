@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import loginIcon from "./../assest/signin.gif";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,8 +22,7 @@ function Login() {
       };
     });
   };
-  const { fetchUserDetails } = useContext(Context);
-
+  const { fetchUserDetails, fetchUserAddToCart } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +39,7 @@ function Login() {
       toast.success(dataApi.message);
       navigate("/");
       fetchUserDetails();
+      fetchUserAddToCart();
     } else {
       toast.error(dataApi.message);
     }
