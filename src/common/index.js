@@ -79,6 +79,10 @@ const SummaryApi = {
     url: `${process.env.REACT_APP_BACKEND_URL}/api/checkout`,
     method: "post",
   },
+  getOrder: {
+    url: `${process.env.REACT_APP_BACKEND_URL}/api/order-list`,
+    method: "get",
+  },
 };
 
 export default SummaryApi;

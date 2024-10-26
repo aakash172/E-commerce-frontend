@@ -42,7 +42,7 @@ const ProductDetails = () => {
     });
     setLoading(false);
     const dataResponse = await response.json();
-    console.log(dataResponse);
+
     setData(dataResponse?.data);
     setActiveImage(dataResponse?.data?.productImage[0]);
   };

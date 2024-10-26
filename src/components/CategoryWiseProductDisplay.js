@@ -23,7 +23,7 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
     setLoading(false);
     setData(categoryProduct?.data);
   };
-  console.log(loading);
+
   useEffect(() => {
     fetchData();
   }, []);

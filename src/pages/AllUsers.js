@@ -20,7 +20,7 @@ export default function AllUsers() {
       credentials: "include",
     });
     const dataResponse = await fetchData.json();
-    console.log(dataResponse);
+
     if (dataResponse.success) {
       setAllUsers(dataResponse.data);
     } else {
