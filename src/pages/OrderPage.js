@@ -21,7 +21,7 @@ const OrderPage = () => {
   return (
     <div>
       <div className="p-4 w-full">
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           return (
             <div key={item.userId + index}>
               <p className="font-medium text-lg">
@@ -30,7 +30,7 @@ const OrderPage = () => {
               <div className="border rounded">
                 <div className="flex flex-col lg:flex-row justify-between">
                   <div className="grid gap-1">
-                    {item?.productDetails.map((product, index1) => {
+                    {item?.productDetails?.map((product, index1) => {
                       return (
                         <div
                           key={product.productId + index1}
@@ -71,7 +71,7 @@ const OrderPage = () => {
                       <div className="text-lg font-medium">
                         Shipping Details
                       </div>
-                      {item.shipping_options.map((shipping, index) => {
+                      {item?.shipping_options?.map((shipping, index) => {
                         return (
                           <div key={shipping.shipping_rate} className="ml-1">
                             Shipping Amount :{shipping.shipping_amount}
