@@ -11,15 +11,15 @@ const OrderPage = () => {
       credentials: "include",
     });
     const responseData = await response.json();
-    setData(responseData.data);
+    setData(responseData.data || []);
   };
   useEffect(() => {
     fetchOrderDetails();
   }, []);
+
+  if (!data.length) return <p>No Order available</p>;
   return (
     <div>
-      {!data[0] && <p>No Order availble</p>}
-
       <div className="p-4 w-full">
         {data.map((item, index) => {
           return (
