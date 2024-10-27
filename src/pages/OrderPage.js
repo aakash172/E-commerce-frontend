@@ -37,16 +37,16 @@ const OrderPage = () => {
                           className="flex gap-3 bg-slate-100"
                         >
                           <img
-                            src={product.image[0]}
+                            src={product?.image[0]}
                             className="w-28 h-28 bg-slate-200 object-scale-down p-2"
                           />
                           <div>
-                            <div>{product.name}</div>
+                            <div>{product?.name}</div>
                             <div className="flex items-center gap-5 mt-1">
                               <div className="text-lg text-red-500">
-                                {DisplayCurrencyINR(product.price)}
+                                {DisplayCurrencyINR(product?.price)}
                               </div>
-                              <p>Quantity : {product.quantity}</p>
+                              <p>Quantity : {product?.quantity}</p>
                             </div>
                           </div>
                         </div>
@@ -60,10 +60,10 @@ const OrderPage = () => {
                       </div>
                       <p className="ml-1">
                         Payment method :{" "}
-                        {item.paymentDetails.payment_method_types[0]}
+                        {item.paymentDetails?.payment_method_type[0]}
                       </p>
                       <p className=" ml-1">
-                        Payment status : {item.paymentDetails.payment_status}
+                        Payment Status : {item?.paymentDetails?.payment_status}
                       </p>
                     </div>
 
@@ -73,8 +73,8 @@ const OrderPage = () => {
                       </div>
                       {item?.shipping_options?.map((shipping, index) => {
                         return (
-                          <div key={shipping.shipping_rate} className="ml-1">
-                            Shipping Amount :{shipping.shipping_amount}
+                          <div key={shipping?.shipping_rate} className="ml-1">
+                            Shipping Amount :{shipping?.shipping_amount}
                           </div>
                         );
                       })}
@@ -82,7 +82,7 @@ const OrderPage = () => {
                   </div>
                 </div>
                 <div className="font-semibold ml-auto w-fit lg:text-lg">
-                  Total Amount:{item.totalAmount}
+                  Total Amount:{item?.totalAmount}
                 </div>
               </div>
             </div>
