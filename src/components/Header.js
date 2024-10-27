@@ -95,6 +95,13 @@ function Header() {
                       Admin Panel
                     </Link>
                   )}
+                  <Link
+                    to={"/order"}
+                    className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2  "
+                    onClick={() => setMenuDisplay((prev) => !prev)}
+                  >
+                    Order
+                  </Link>
                 </nav>
               </div>
             )}
