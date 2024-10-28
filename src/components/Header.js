@@ -52,15 +52,15 @@ function Header() {
           </Link>
         </div>
 
-        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow-md pl-2">
+        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-r-full rounded-l-lg focus-within:shadow-md pl-2">
           <input
             type="text"
-            placeholder="search items here"
-            className="w-full  outline-none"
+            placeholder="Search products here"
+            className="w-full  outline-none pl-2"
             onChange={handleSearch}
             value={search}
           ></input>
-          <div className="text-lg min-w-[50px] h-8 bg-red-600 text-white flex items-center justify-center rounded-r-full">
+          <div className="text-lg min-w-[50px] h-8 bg-red-600 text-white flex items-center justify-center rounded-r-full cursor-pointer">
             <GrSearch />
           </div>
         </div>
@@ -121,14 +121,14 @@ function Header() {
             {user ? (
               <button
                 onClick={handleLogout}
-                className="px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-800"
+                className="px-3 py-1 rounded-md text-white bg-red-600 hover:bg-red-800"
               >
                 Logout
               </button>
             ) : (
               <Link
                 to={"/login"}
-                className="px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-800"
+                className="px-3 py-1 rounded-md text-white bg-red-600 hover:bg-red-800"
               >
                 login
               </Link>
